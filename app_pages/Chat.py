@@ -29,6 +29,14 @@ def main():
             st.write(f"Files in the {selected_model} dataset:")
             st.write("\n\n".join([f for f in file_list]))
 
+            # TODO: https://stackoverflow.com/questions/78084538/openai-assistants-api-how-do-i-upload-a-file-and-use-it-as-a-knowledge-base
+            if st.button("Use this training data"):
+                for file in file_list:
+                    with open(f"training_models/{selected_model}/{file}") as f:
+                        client.files.create(
+                            file=f,
+                            purpose="assistants"
+                        )
     if prompt := st.chat_input("What is up?"):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
