@@ -6,7 +6,7 @@ model_name = st.text_input("Name your training dataset")
 files = st.file_uploader(
     "Upload training documents",
     accept_multiple_files=True,
-    type=["txt", "doc", "pdf", "csv"],
+    type=['c', 'cpp', 'cs', 'css', 'doc', 'docx', 'go', 'html', 'java', 'js', 'json', 'md', 'pdf', 'php', 'pptx', 'py', 'rb', 'sh', 'tex', 'ts', 'txt'],
 )
 
 if files and st.button("Submit data"):
