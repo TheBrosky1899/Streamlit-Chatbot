@@ -23,10 +23,9 @@ def logout_func():
     st.rerun()
 
 def login_func():
-    st.title("Login Page")
+    st.title("Login")
 
     with st.form("Login", border=False):
-
         email = st.text_input("Email", placeholder="Enter your email")
         password = st.text_input(
             "Password", placeholder="Enter your password"
@@ -52,18 +51,19 @@ def main():
         app_pages = [st.Page(login_func)]
 
     if st.session_state.get('role', None):
-        app_pages.append(st.Page("app_pages/Home.py"))
+        # app_pages.append(st.Page("app_pages/Home.py"))
         app_pages.append(st.Page("app_pages/Chat.py"))
 
-    if st.session_state.get('role', None) == "admin":
-        app_pages.append(st.Page("app_pages/Upload_Training_Data.py"))
+        if st.session_state.get('role', None) == "admin":
+            app_pages.append(st.Page("app_pages/Upload_Training_Data.py"))
 
-    if st.session_state.authenticated:
+    if st.session_state.get("authenticated", None):
         app_pages.append(st.Page(logout_func, title="Logout"))
+    
     page_nav = st.navigation(app_pages)
     page_nav.run()
 
-    st.rerun()
+
 
 
 if __name__ == "__main__":

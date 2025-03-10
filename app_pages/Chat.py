@@ -45,7 +45,7 @@ def get_trained_agent(selected_model: str) -> Assistant:
 
 def main():
 
-    st.title("Chatbot Wrapper")
+    st.title("Chatbot")
 
     if "openai_model" not in st.session_state:
         st.session_state["openai_model"] = "gpt-3.5-turbo"
