@@ -65,7 +65,7 @@ def main():
             st.markdown(message["content"])
 
     with st.sidebar:
-        training_models = os.listdir("training_models")
+        training_models = os.listdir("training_models").remove(".gitkeep")
 
         selected_model = st.selectbox(
             "Training data to use", options=[""] + training_models
