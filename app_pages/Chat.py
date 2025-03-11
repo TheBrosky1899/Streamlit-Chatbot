@@ -71,7 +71,7 @@ def main():
             trained_assistant: Assistant = st.session_state.get(
                 "trained_assistant", get_trained_agent(selected_model)
             )
-
+    st.write(st.session_state)
     if not st.session_state.get("trained_assistant", None):
         if prompt := st.chat_input("What is up?"):
             st.session_state.messages.append({"role": "user", "content": prompt})
