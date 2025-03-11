@@ -19,8 +19,6 @@ if files and st.button("Submit data"):
     for f in files:
         os.makedirs(f"training_models/{model_name}", exist_ok=True)
 
-        file_data, file_name = convert(f)
-
-        with open(f"training_models/{model_name}/{file_name}", "wb") as ff:
-            ff.write(file_data)
+        with open(f"training_models/{model_name}/{f.name}", "wb") as ff:
+            ff.write(f.read())
     st.success("Files saved")
