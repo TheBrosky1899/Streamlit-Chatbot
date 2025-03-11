@@ -56,6 +56,7 @@ def main():
 
         if st.session_state.get('role', None) == "admin":
             app_pages.append(st.Page("app_pages/Upload_Training_Data.py"))
+            app_pages.append(st.Page("app_pages/Manage_Training_Data.py"))
 
     if st.session_state.get("authenticated", None):
         app_pages.append(st.Page(logout_func, title="Logout"))
