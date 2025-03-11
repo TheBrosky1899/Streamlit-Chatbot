@@ -11,6 +11,8 @@ client: Client = st.session_state.get(
 def get_trained_agent(selected_model: str) -> Assistant:
     file_list = os.listdir(f"training_models/{selected_model}")
 
+    file_list = [f for f in file_list if f != ".gitkeep"]
+
     st.write(f"Files in the {selected_model} dataset:")
     st.write("\n\n".join([f for f in file_list]))
 
