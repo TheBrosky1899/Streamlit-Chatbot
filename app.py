@@ -2,8 +2,8 @@ import streamlit as st
 
 # User authentication (dummy credentials for demo)
 USER_CREDENTIALS = {
-    "admin": {"password": "admin", "role": "admin"},
-    "user": {"password": "user", "role": "user"},
+    "admin": {"password": st.secrets["ADMIN_PW"], "role": "admin"},
+    "user": {"password": st.secrets["USER_PW"], "role": "user"},
 }
 
 st.set_page_config(layout="wide")
