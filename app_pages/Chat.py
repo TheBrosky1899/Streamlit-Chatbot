@@ -27,6 +27,11 @@ def get_trained_agent(selected_model: str) -> Assistant:
             name=f"{selected_model} vector store"
         )
 
+        for ff in file_list:
+            with open(f"training_models/{selected_model}/{ff}", "rb") as f:
+                st.write(f"Uploading {ff}")
+                st.write(f"File size: {os.path.getsize(f.name)} bytes")
+
         file_streams = [
             open(f"training_models/{selected_model}/{f}", "rb") for f in file_list
         ]
