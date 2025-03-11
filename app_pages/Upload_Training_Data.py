@@ -1,6 +1,5 @@
 import os
 import streamlit as st
-from src import convert
 
 model_name = st.text_input("Name your training dataset")
 files = st.file_uploader(
