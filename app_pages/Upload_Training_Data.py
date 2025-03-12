@@ -1,6 +1,12 @@
 import os
 import streamlit as st
-from shared import TrainingOptions
+from enum import Enum
+
+
+class TrainingOptions(Enum):
+    GUIDED = "To help guide the AI to make a decision"
+    EXTRACT = "To have AI pull exact information out"
+
 
 model_name = st.text_input("Name your training dataset")
 files = st.file_uploader(
@@ -9,7 +15,6 @@ files = st.file_uploader(
     type=['c', 'cpp', 'cs', 'css', 'doc', 'docx', 'go', 'html', 'java', 'js',
           'json', 'md', 'pdf', 'php', 'pptx', 'py', 'rb', 'sh', 'tex', 'ts', 'txt'],
 )
-
 
 
 training_option = st.selectbox("How should the training data be used?", options=[
@@ -43,7 +48,8 @@ if model_name and files and training_option and st.button("Submit data"):
         )
     os.makedirs("training_models", exist_ok=True)
     for f in files:
-        os.makedirs(f"training_models/{model_name}/{TrainingOptions(training_option).name}", exist_ok=True)
+        os.makedirs(
+            f"training_models/{model_name}/{TrainingOptions(training_option).name}", exist_ok=True)
 
         with open(f"training_models/{model_name}/{TrainingOptions(training_option).name}/{f.name}", "wb") as ff:
             ff.write(f.read())
