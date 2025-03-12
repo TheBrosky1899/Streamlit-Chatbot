@@ -37,7 +37,8 @@ def get_trained_agent(selected_model: str) -> Assistant:
 
         assistant = client.beta.assistants.update(
             assistant_id=assistant.id,
-            tool_resources={"file_search": {"vector_store_ids": [vector_store.id]}},
+            tool_resources={"file_search": {
+                "vector_store_ids": [vector_store.id]}},
         )
 
         return assistant
@@ -75,7 +76,8 @@ def main():
             )
     if not st.session_state.get("trained_assistant", None):
         if prompt := st.chat_input("What is up?"):
-            st.session_state.messages.append({"role": "user", "content": prompt})
+            st.session_state.messages.append(
+                {"role": "user", "content": prompt})
             with st.chat_message("user"):
                 st.markdown(prompt)
 
@@ -89,28 +91,19 @@ def main():
                     stream=True,
                 )
             response = st.write_stream(stream)
-            st.session_state.messages.append({"role": "assistant", "content": response})
+            st.session_state.messages.append(
+                {"role": "assistant", "content": response})
 
     else:
         if prompt := st.chat_input("What is up?"):
-            st.session_state.messages.append({"role": "user", "content": prompt})
+            st.session_state.messages.append(
+                {"role": "user", "content": prompt})
             with st.chat_message("user"):
                 st.markdown(prompt)
-            trained_assistant : Assistant = st.session_state.get("trained_assistant")
+            trained_assistant: Assistant = st.session_state.get(
+                "trained_assistant")
 
             thread = client.beta.threads.create(
-                messages=[
-                    {"role": m["role"], "content": m["content"]}
-                    for m in st.session_state.messages
-                ],
-            )
-            # TODO: finish
-
-            run = client.beta.threads.runs.create(
-                thread_id=thread.id,
-                assistant_id=trained_assistant.id
-            )
-            response = client.beta.assistants.message(
                 assistant_id=trained_assistant.id,
                 messages=[
                     {"role": m["role"], "content": m["content"]}
@@ -118,7 +111,15 @@ def main():
                 ],
             )
 
-            st.session_state.messages.append({"role": "assistant", "content": response})
+            with st.chat_message("assistant"):
+                stream = client.beta.threads.runs.stream(
+                    thread_id=thread.id,
+                    assistant_id=trained_assistant.id,
+                    instructions="You are a helpful assistant. Use this training data to help answer questions.",
+                )
+            response = st.write_stream(stream)
+            st.session_state.messages.append(
+                {"role": "assistant", "content": response})
 
 
 if __name__ == "__main__" or __name__ == "__page__":
