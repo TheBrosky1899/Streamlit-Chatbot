@@ -12,9 +12,15 @@ def manage_training_data():
     ):
         if st.button("Delete"):
             import shutil
+            try:
 
-            shutil.rmtree(f"training_models/{selected_model}")
-            st.success(f"{selected_model} deleted")
+                shutil.rmtree(f"training_models/{selected_model}")
+                st.success(f"{selected_model} deleted")
+            except NotADirectoryError:
+                os.remove(f"training_models/{selected_model}")
+                st.success(f"{selected_model} deleted")
+            except FileNotFoundError:
+                st.error(f"{selected_model} not found")
 
 if __name__ == "__main__" or __name__ == "__page__":
     manage_training_data()

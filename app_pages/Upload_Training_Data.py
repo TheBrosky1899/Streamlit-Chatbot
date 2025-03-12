@@ -8,7 +8,7 @@ files = st.file_uploader(
     type=['c', 'cpp', 'cs', 'css', 'doc', 'docx', 'go', 'html', 'java', 'js', 'json', 'md', 'pdf', 'php', 'pptx', 'py', 'rb', 'sh', 'tex', 'ts', 'txt'],
 )
 
-if files and st.button("Submit data"):
+if model_name and files and st.button("Submit data"):
     if len(files) > 5:
         files = files[:5]
 
