@@ -27,6 +27,8 @@ def get_trained_agent(selected_model: str) -> Assistant:
             name=f"{selected_model} vector store"
         )
 
+        st.session_state.vector_store = vector_store
+
         file_streams = [
             open(f"training_models/{selected_model}/{f}", "rb") for f in file_list
         ]
@@ -109,6 +111,11 @@ def main():
                     {"role": m["role"], "content": m["content"]}
                     for m in st.session_state.messages
                 ],
+                tool_resources={
+                    "file_search": {
+                        "vector_store_ids": [st.session_state.get("vector_store").id]
+                    }
+                }
             )
 
             with st.chat_message("assistant"):

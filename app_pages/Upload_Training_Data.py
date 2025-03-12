@@ -12,8 +12,10 @@ if files and st.button("Submit data"):
     if len(files) > 5:
         files = files[:5]
 
+        short_file_list = ', \n\n'.join([x.name for x in files])
+
         st.warning(
-            f"Max of 5 files allowed. Only these files will be used for training data.\n\n {", \n\n".join([x.name for x in files])}"
+            f"""Max of 5 files allowed. Only these files will be used for training data. {short_file_list}"""
         )
     os.makedirs("training_models", exist_ok=True)
     for f in files:
