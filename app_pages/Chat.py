@@ -96,7 +96,20 @@ def main():
             st.session_state.messages.append({"role": "user", "content": prompt})
             with st.chat_message("user"):
                 st.markdown(prompt)
+            trained_assistant : Assistant = st.session_state.get("trained_assistant")
 
+            thread = client.beta.threads.create(
+                messages=[
+                    {"role": m["role"], "content": m["content"]}
+                    for m in st.session_state.messages
+                ],
+            )
+            # TODO: finish
+
+            run = client.beta.threads.runs.create(
+                thread_id=thread.id,
+                assistant_id=trained_assistant.id
+            )
             response = client.beta.assistants.message(
                 assistant_id=trained_assistant.id,
                 messages=[
