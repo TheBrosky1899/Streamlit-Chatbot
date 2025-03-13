@@ -4,6 +4,7 @@ from openai.types.vector_store import VectorStore
 import os
 from typing_extensions import override
 import streamlit as st
+import time
 
 client: Client = st.session_state.get(
     "openai_client", OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
@@ -13,14 +14,16 @@ client: Client = st.session_state.get(
 class EventHandler(AssistantEventHandler):
     @override
     def on_text_created(self, text) -> None:
-        print(f"\nassistant on text create > ", end="", flush=True)
+        st.session_state.response_text = ""
+        print(f"\nassistant > ", end="", flush=True)
 
     @override
     def on_text_delta(self, delta, snapshot):
+        st.session_state.response_text += delta.value
         print(delta.value, end="", flush=True)
 
     def on_tool_call_created(self, tool_call):
-        print(f"\nassistant on tool call created > {tool_call.type}\n", flush=True)
+        print(f"\nassistant > {tool_call.type}\n", flush=True)
 
     def on_tool_call_delta(self, delta, snapshot):
         if delta.type == "code_interpreter":
@@ -31,6 +34,14 @@ class EventHandler(AssistantEventHandler):
                 for output in delta.code_interpreter.outputs:
                     if output.type == "logs":
                         print(f"\n{output.logs}", flush=True)
+
+
+def stream_response():
+    for word in st.session_state.get("response_text").split(" "):
+        yield word + " "
+        time.sleep(0.01)
+
+    st.session_state.response_text = ''
 
 
 def get_trained_agent(selected_model: str) -> Assistant:
@@ -133,8 +144,6 @@ def main():
 
             vector_store: VectorStore = st.session_state.get("vector_store")
 
-            print(vector_store)
-
             thread = client.beta.threads.create(
                 # assistant_id=trained_assistant.id,
                 messages=[
@@ -149,7 +158,7 @@ def main():
             if st.session_state.get("training_option", "GUIDED") == "GUIDED":
                 instructions = "You are a helpful assistant. Use this training data to help answer questions."
             elif st.session_state.get("training_option") == "EXTRACT":
-                instructions = "You are a helpful assistant that only provides answers if the answer is present in the training data. You will cite the training data as much as possible."
+                instructions = "You are a helpful assistant that only provides answers if the answer is present in the training data. You will cite the training data by mentioning which file(s) the information came from. If you do not find the answer in the training data provided, you are allowed to use your existing knowledge base but you must communicate that to the user."
 
             with st.chat_message("assistant"):
                 with client.beta.threads.runs.stream(
@@ -160,8 +169,8 @@ def main():
                 ) as stream:
                     stream.until_done()
 
-            # response = st.write_stream(stream)
-            # st.session_state.messages.append({"role": "assistant", "content": response})
+            response = st.write_stream(stream_response)
+            st.session_state.messages.append({"role": "assistant", "content": response})
 
 
 if __name__ == "__main__" or __name__ == "__page__":
