@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 import hashlib
-from datetime import datetime
+from datetime import datetime, date
 
 st.set_page_config(layout="wide")
 
@@ -28,12 +28,14 @@ def authenticate(email, password):
     users_df = load_users()
     user = users_df[(users_df["Email"] == email) & (users_df["Password"] == hash_password(password))]
     if not user.empty:
-        expiration_date = user.iloc[0]["Expiration Date"]
-        if pd.notna(expiration_date) and expiration_date >= datetime.today():
-            return user.iloc[0]["Role"]
-        else:
-            st.error("Your account has expired. Please contact the administrator.")
-            st.stop()
+        # TODO: fix the expiration date
+        # expiration_date = user.iloc[0]["Expiration Date"]
+        return user.iloc[0]["Role"]
+        # if pd.notna(expiration_date) and datetime.strftime(expiration_date, "%Y-%m-%d") >= datetime.today():
+        #     return user.iloc[0]["Role"]
+        # else:
+        #     st.error("Your account has expired. Please contact the administrator.")
+        #     st.stop()
     return None
 
 def logout_func():

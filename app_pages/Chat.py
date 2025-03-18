@@ -63,7 +63,7 @@ def main():
     with st.sidebar:
         training_models = os.listdir("training_models")
 
-        st.write(st.session_state)
+        # st.write(st.session_state)
 
         if ".gitkeep" in training_models:
             training_models.remove(".gitkeep")
