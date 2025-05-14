@@ -93,7 +93,7 @@ def get_trained_agent(selected_model: str) -> Assistant:
 
 def main():
 
-    st.title("Chatbot")
+    st.title("PlatfotmShift Engine")
 
     if "openai_model" not in st.session_state:
         st.session_state["openai_model"] = "gpt-4o-mini"
