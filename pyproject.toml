@@ -10,7 +10,7 @@ dependencies = [
     "PyPDF2>=3.0.1",
     "openai>=1.65.4",
     "watchdog>=6.0.0",
-    "aws-cdk-lib>=2.182.0",
+    "aws-cdk-lib>=2.204.0",
 ]
 requires-python = "==3.12.*"
 readme = "README.md"

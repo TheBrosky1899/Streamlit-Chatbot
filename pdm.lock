@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:6fd0e715c2b955a61f159ff3b5946d1ad7019537b50a3c708a7a2cd9ff113bca"
+content_hash = "sha256:2fbe99ebbff9f18e88a79299858bc4adce884fbb7bd23a4db831c89cf75fb5b0"
 
 [[metadata.targets]]
 requires_python = "==3.12.*"
@@ -72,18 +72,18 @@ files = [
 
 [[package]]
 name = "aws-cdk-asset-awscli-v1"
-version = "2.2.227"
-requires_python = "~=3.8"
+version = "2.2.242"
+requires_python = "~=3.9"
 summary = "A library that contains the AWS CLI for use in Lambda Layers"
 groups = ["default"]
 dependencies = [
-    "jsii<2.0.0,>=1.108.0",
+    "jsii<2.0.0,>=1.112.0",
     "publication>=0.0.3",
     "typeguard<4.3.0,>=2.13.3",
 ]
 files = [
-    {file = "aws_cdk.asset_awscli_v1-2.2.227-py3-none-any.whl", hash = "sha256:5160cd515d94d0da252806cd853a3e861e1b76aa553e1c90aec2bd712fa3df1b"},
-    {file = "aws_cdk_asset_awscli_v1-2.2.227.tar.gz", hash = "sha256:0fa4cf382e712121b8bbe11532854018abdba19964ded9c0aa9aace4383816b6"},
+    {file = "aws_cdk_asset_awscli_v1-2.2.242-py3-none-any.whl", hash = "sha256:d1001bf56a12f7d1162d4211003d1e8f72a213159465e2d0e1c598cc0ea44aad"},
+    {file = "aws_cdk_asset_awscli_v1-2.2.242.tar.gz", hash = "sha256:a957d679a118f4375307ed90b9aed7127c5c1402989438060eae4ab29ab0d13f"},
 ]
 
 [[package]]
@@ -104,38 +104,38 @@ files = [
 
 [[package]]
 name = "aws-cdk-cloud-assembly-schema"
-version = "40.7.0"
-requires_python = "~=3.8"
+version = "45.2.0"
+requires_python = "~=3.9"
 summary = "Schema for the protocol between CDK framework and CDK CLI"
 groups = ["default"]
 dependencies = [
-    "jsii<2.0.0,>=1.108.0",
+    "jsii<2.0.0,>=1.112.0",
     "publication>=0.0.3",
     "typeguard<4.3.0,>=2.13.3",
 ]
 files = [
-    {file = "aws_cdk.cloud_assembly_schema-40.7.0-py3-none-any.whl", hash = "sha256:a86de4f46a72f9445f0a0ae646c348702041047c72d10b76e3b4c8dc5e460ee1"},
-    {file = "aws_cdk_cloud_assembly_schema-40.7.0.tar.gz", hash = "sha256:8269a74cce261e56750290a2492f04d0e6825913d321a8ab17ba3b5f872fc193"},
+    {file = "aws_cdk_cloud_assembly_schema-45.2.0-py3-none-any.whl", hash = "sha256:aeb88c5e3c36eecae341ddca568907b5d70b9b67de51572ef51564dd486dbb48"},
+    {file = "aws_cdk_cloud_assembly_schema-45.2.0.tar.gz", hash = "sha256:7affdd151be58028d31fcbbbd084c07ea2e9d433979d0653ed43e15a307015cd"},
 ]
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.182.0"
-requires_python = "~=3.8"
+version = "2.204.0"
+requires_python = "~=3.9"
 summary = "Version 2 of the AWS Cloud Development Kit library"
 groups = ["default"]
 dependencies = [
-    "aws-cdk-asset-awscli-v1<3.0.0,>=2.2.208",
+    "aws-cdk-asset-awscli-v1==2.2.242",
     "aws-cdk-asset-node-proxy-agent-v6<3.0.0,>=2.1.0",
-    "aws-cdk-cloud-assembly-schema<41.0.0,>=40.6.0",
+    "aws-cdk-cloud-assembly-schema<46.0.0,>=45.0.0",
     "constructs<11.0.0,>=10.0.0",
-    "jsii<2.0.0,>=1.106.0",
+    "jsii<2.0.0,>=1.112.0",
     "publication>=0.0.3",
     "typeguard<4.3.0,>=2.13.3",
 ]
 files = [
-    {file = "aws_cdk_lib-2.182.0-py3-none-any.whl", hash = "sha256:73b46fb789c7fe138f5ec15afa23c588fee706827edd056dd5fa8571e3d725dd"},
-    {file = "aws_cdk_lib-2.182.0.tar.gz", hash = "sha256:907a2969d7c48605f597b47e47adb0b58ac17bb8de71d4a97761513c76cb3aa8"},
+    {file = "aws_cdk_lib-2.204.0-py3-none-any.whl", hash = "sha256:dc9385c57cac4982aef336ff678a06da0bbf760e53d3814feeefd8205a92c2ae"},
+    {file = "aws_cdk_lib-2.204.0.tar.gz", hash = "sha256:be1527d8a22c061c5d8ac9a0b72e6c676e3310dd249f1244ab647b331094f135"},
 ]
 
 [[package]]
@@ -403,8 +403,8 @@ files = [
 
 [[package]]
 name = "jsii"
-version = "1.108.0"
-requires_python = "~=3.8"
+version = "1.112.0"
+requires_python = "~=3.9"
 summary = "Python client for jsii runtime"
 groups = ["default"]
 dependencies = [
@@ -417,8 +417,8 @@ dependencies = [
     "typing-extensions<5.0,>=3.8",
 ]
 files = [
-    {file = "jsii-1.108.0-py3-none-any.whl", hash = "sha256:d6c99671ab44520069ad6198e3b07379ae9c075bcb53b8a16455c1beb10288ea"},
-    {file = "jsii-1.108.0.tar.gz", hash = "sha256:f1053a414ac117c6ecae7208c5ca4cb6d10ca3420c69e30f8b9cca64cc37e61b"},
+    {file = "jsii-1.112.0-py3-none-any.whl", hash = "sha256:6510c223074d9b206fd0570849a791e4d9ecfff7ffe68428de73870cea9f55a1"},
+    {file = "jsii-1.112.0.tar.gz", hash = "sha256:6b7d19f361c2565b76828ecbe8cbed8b8d6028a82aa98a46b206a4ee5083157e"},
 ]
 
 [[package]]
@@ -507,7 +507,7 @@ files = [
 
 [[package]]
 name = "openai"
-version = "1.65.5"
+version = "1.93.3"
 requires_python = ">=3.8"
 summary = "The official Python library for the openai API"
 groups = ["default"]
@@ -522,8 +522,8 @@ dependencies = [
     "typing-extensions<5,>=4.11",
 ]
 files = [
-    {file = "openai-1.65.5-py3-none-any.whl", hash = "sha256:5948a504e7b4003d921cfab81273813793a31c25b1d7b605797c01757e0141f1"},
-    {file = "openai-1.65.5.tar.gz", hash = "sha256:17d39096bbcaf6c86580244b493a59e16613460147f0ba5ab6e608cdb6628149"},
+    {file = "openai-1.93.3-py3-none-any.whl", hash = "sha256:41aaa7594c7d141b46eed0a58dcd75d20edcc809fdd2c931ecbb4957dc98a892"},
+    {file = "openai-1.93.3.tar.gz", hash = "sha256:488b76399238c694af7e4e30c58170ea55e6f65038ab27dbe95b5077a00f8af8"},
 ]
 
 [[package]]
@@ -814,33 +814,33 @@ files = [
 
 [[package]]
 name = "streamlit"
-version = "1.43.1"
+version = "1.46.1"
 requires_python = "!=3.9.7,>=3.9"
 summary = "A faster way to build and share data apps"
 groups = ["default"]
 dependencies = [
     "altair<6,>=4.0",
-    "blinker<2,>=1.0.0",
-    "cachetools<6,>=4.0",
+    "blinker<2,>=1.5.0",
+    "cachetools<7,>=4.0",
     "click<9,>=7.0",
     "gitpython!=3.1.19,<4,>=3.0.7",
     "numpy<3,>=1.23",
-    "packaging<25,>=20",
+    "packaging<26,>=20",
     "pandas<3,>=1.4.0",
     "pillow<12,>=7.1.0",
-    "protobuf<6,>=3.20",
+    "protobuf<7,>=3.20",
     "pyarrow>=7.0",
     "pydeck<1,>=0.8.0b4",
     "requests<3,>=2.27",
     "tenacity<10,>=8.1.0",
     "toml<2,>=0.10.1",
-    "tornado<7,>=6.0.3",
+    "tornado!=6.5.0,<7,>=6.0.3",
     "typing-extensions<5,>=4.4.0",
     "watchdog<7,>=2.1.5; platform_system != \"Darwin\"",
 ]
 files = [
-    {file = "streamlit-1.43.1-py2.py3-none-any.whl", hash = "sha256:ed8a6bd01e2b087e25b1b534835a341c2f71964822ac94b065c5496d2b5b49c2"},
-    {file = "streamlit-1.43.1.tar.gz", hash = "sha256:4bb1e1235f6d84c279da567bf314f6e12310d53f1fb2350176ee462e189baebb"},
+    {file = "streamlit-1.46.1-py3-none-any.whl", hash = "sha256:dffa373230965f87ccc156abaff848d7d731920cf14106f3b99b1ea18076f728"},
+    {file = "streamlit-1.46.1.tar.gz", hash = "sha256:2cc4ad01cfeded9ad953a21829eb879b90aa77af4068c68397411c2d5c8862cf"},
 ]
 
 [[package]]
